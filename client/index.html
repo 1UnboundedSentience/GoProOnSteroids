@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>facetype</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+  <!-- CodeMirror -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.css" />
+
+  <!-- Firepad -->
+  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <script src="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.min.js"></script>
+  <script src='http://static.opentok.com/v2/js/opentok.min.js'></script>
+  <script type="text/javascript">
+    // Initialize API key, session, and token...
+    // Think of a session as a room, and a token as the key to get in to the room
+    // Sessions and tokens are generated on your server and passed down to the client
+    var apiKey = "45234392";
+    var sessionId = "1_MX40NTIzNDM5Mn5-MTQzMTQwMjc3ODQ5OH5XbkptMk54T01nbEozRjZtWXBIN0c3SEV-fg";
+    var token = "T1==cGFydG5lcl9pZD00NTIzNDM5MiZzaWc9ZjE3ZjE0MjczMTZlMzgzODEzMzExZTVjOGQ1OWNlNjhmZDFhYmY5Mjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5USXpORE01TW41LU1UUXpNVFF3TWpjM09EUTVPSDVYYmtwdE1rNTRUMDFuYkVvelJqWnRXWEJJTjBjM1NFVi1mZyZjcmVhdGVfdGltZT0xNDMxNDAyNzg0Jm5vbmNlPTAuMzg0MDU5MDU2NDc4MjU0OSZleHBpcmVfdGltZT0xNDMzOTk0NzY0JmNvbm5lY3Rpb25fZGF0YT0=";
+
+    // Initialize session, set up event listeners, and connect
+    var session = OT.initSession(apiKey, sessionId);
+
+    session.on("streamCreated", function(event) {
+      session.subscribe(event.stream);
+    });
+
+    session.connect(token, function(error) {
+      var publisher = OT.initPublisher();
+      session.publish(publisher);
+    });
+  </script>
+</head>
+<body>
+  <div id='video-wrapper' style='width: 400px; display:inline-block'>
+    <div id="myPublisherDiv"></div>
+  </div>
+  <div id="firepad"></div>
+  <script>
+    var firepadRef = new Firebase('https://facetype.firebaseio.com/');
+    var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+        { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
+  </script>
+</body>
+</html>
