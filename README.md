@@ -1,5 +1,3 @@
-# facetype
+#GoProOnSteroids
 
-> Facetime with typing.
-
-THIS IS A HACKATHON PROJECT. PROCEED WITH CAUTION.
+The next generation in 3D VR streaming
