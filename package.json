@@ -1,12 +1,12 @@
 {
-  "name": "Facetype",
-  "description": "Facetime with typing.",
+  "name": "GoProOnSteroids",
+  "description": "A 3D GoPro Video Feed",
   "version": "0.0.1",
-  "author": "Andy Jiang",
+  "author": "JasonXu",
   "main": "server/server",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lambtron/facetype"
+    "url": "https://github.com/1UnboundedSentience/GoProOnSteroids"
   },
   "engines": {
     "node": "^0.12.x",

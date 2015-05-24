@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>facetype</title>
+  <title>AwesomeApp</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <!-- Firebase -->
   <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.css" />
 
   <!-- Firepad -->
-  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.css" />
+ <!--  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.css" />
   <link rel="stylesheet" href="/index.css" />
-  <script src="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.min.js"></script>
-  <script src='http://static.opentok.com/v2/js/opentok.min.js'></script>
+  <script src="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.min.js"></script> -->
+  <script src='/webrtcStuff.js'></script>
   <script type="text/javascript">
     // Initialize API key, session, and token...
     // Think of a session as a room, and a token as the key to get in to the room
@@ -30,15 +30,30 @@
     });
 
     session.connect(token, function(error) {
-      var publisher = OT.initPublisher();
+      var publisher = OT.initPublisher({width:800, height:700});
       session.publish(publisher);
     });
+
+    var publisher = OT.initPublisher("myPublisher", {width:800, height:700});
+  session.publish(publisher);
+
+  function resizePublisher() {
+    alert("vote hilary");
+    var pubElement = document.getElementById('myPublisher'); //whats the id?
+    pubElement.style.width = "100px";
+    pubElement.style.height = "75px";
+
+  }
+
   </script>
 </head>
 <body>
-  <div id='video-wrapper' style='width: 400px; display:inline-block'>
+  <h1>hi world</h1>
+  <div id='video-wrapper' style='width: 100px; display:inline-block'>
+    <a href="javascript:resizePublisher()">resize</a>
     <div id="myPublisherDiv"></div>
   </div>
+  <!--
   <div id="firepad"></div>
   <script>
     var firepadRef = new Firebase('https://facetype.firebaseio.com/');
@@ -46,5 +61,6 @@
     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
         { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
   </script>
+   -->
 </body>
 </html>
